@@ -46,6 +46,7 @@ class Cube:
 
     # rotates a side of the cube according to standard notation
     def rotate(self, move):
+        self.movelist.append(move)
         if move == "U":
             Rotations.U(self.cube)
         elif move == "U2":
