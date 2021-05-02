@@ -7,7 +7,6 @@ from rotations import Rotations
 
 class Cube:
     '''
-
     cube[side][row][col]
 
     0: green

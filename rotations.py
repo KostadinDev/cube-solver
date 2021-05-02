@@ -15,3 +15,24 @@ class Rotations:
         cube[4, :, 0] = cube[4, cube.shape[1] - 1, :]
         cube[4, cube.shape[1] - 1, :] = np.flip(cube[4, :, cube.shape[1] - 1])
         cube[4, :, cube.shape[1] - 1] = temp
+
+
+    @staticmethod
+    def F(cube):
+        pass
+
+    @staticmethod
+    def R(cube):
+        pass
+
+    @staticmethod
+    def D(cube):
+        pass
+
+    @staticmethod
+    def L(cube):
+        pass
+
+    @staticmethod
+    def B(cube):
+        pass
