@@ -19,7 +19,7 @@ class Cube:
 
     def __init__(self, cube=None, movelist=[]):
         # 3d numpy array: cube[side][row][col]
-        self.cube = cube if cube is not None else Cube.random_cube()
+        self.cube = cube if cube is not None else Cube.solved_cube()
         # documents the moves made to reach this state
         self.movelist = movelist
 
@@ -54,6 +54,14 @@ class Cube:
         elif move == "U'":
             for i in range(3):
                 Rotations.U(self.cube)
+        elif move == "D'":
+            Rotations.D(self.cube)
+        elif move == "D2":
+            for i in range(2):
+                Rotations.D(self.cube)
+        elif move == "D":
+            for i in range(3):
+                Rotations.D(self.cube)
 
     # checks if solved
     def is_solved(self):
@@ -61,3 +69,7 @@ class Cube:
             if self.cube[i, :, :].sum() != i * self.cube.shape[1] * self.cube.shape[2]:
                 return False
         return True
+
+cube = Cube.solved_cube()
+cube.rotate('D')
+print(cube)
