@@ -78,6 +78,22 @@ class Cube:
         elif move == "R":
             for i in range(3):
                 Rotations.R(self.cube)
+        elif move == "F'":
+            Rotations.F(self.cube)
+        elif move == "F2":
+            for i in range(2):
+                Rotations.F(self.cube)
+        elif move == "F":
+            for i in range(3):
+                Rotations.F(self.cube)
+        elif move == "B'":
+            Rotations.B(self.cube)
+        elif move == "B2":
+            for i in range(2):
+                Rotations.B(self.cube)
+        elif move == "B":
+            for i in range(3):
+                Rotations.B(self.cube)
 
     # checks if solved
     def is_solved(self):
