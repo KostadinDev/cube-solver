@@ -410,7 +410,6 @@ class TestStringMethods(unittest.TestCase):
                                 ], dtype='uint8')
         random_cube = Cube(random_cube)
         random_cube.rotate("F")
-        print(random_cube.cube)
         after_F = np.array([[[1, 4, 1],
                              [3, 0, 3],
                              [3, 0, 1]],
@@ -455,7 +454,6 @@ class TestStringMethods(unittest.TestCase):
                                 ], dtype='uint8')
         random_cube = Cube(random_cube)
         random_cube.rotate("F'")
-        print(random_cube.cube)
         after_F_prime = np.array([[[1, 0, 3],
                                    [3, 0, 3],
                                    [1, 4, 1]],
@@ -476,6 +474,94 @@ class TestStringMethods(unittest.TestCase):
                                    [5, 2, 2]]
                             ], dtype='uint8')
         equal_arrays = (random_cube.cube == after_F_prime).all()
+        self.assertEqual(equal_arrays, True)
+
+    def test_rotate_B(self):
+        random_cube = np.array([[[1, 3, 1],
+                                 [4, 0, 0],
+                                 [1, 3, 3]],
+                                [[0, 0, 5],
+                                 [1, 1, 1],
+                                 [3, 2, 5]],
+                                [[2, 1, 4],
+                                 [2, 2, 5],
+                                 [0, 3, 1]],
+                                [[4, 2, 2],
+                                 [0, 3, 1],
+                                 [1, 3, 1]],
+                                [[0, 5, 1],
+                                 [4, 4, 4],
+                                 [4, 5, 5]],
+                                [[4, 0, 2],
+                                 [4, 5, 5],
+                                 [5, 2, 2]]
+                                ], dtype='uint8')
+        random_cube = Cube(random_cube)
+        random_cube.rotate("B")
+        after_B = np.array([[[1, 3, 1],
+                             [4, 0, 0],
+                             [1, 3, 3]],
+                            [[0, 0, 5],
+                             [1, 1, 2],
+                             [3, 2, 2]],
+                            [[0, 2, 2],
+                             [3, 2, 1],
+                             [1, 5, 4]],
+                            [[0, 2, 2],
+                             [5, 3, 1],
+                             [1, 3, 1]],
+                            [[5, 1, 5],
+                             [4, 4, 4],
+                             [4, 5, 5]],
+                            [[4, 0, 2],
+                             [4, 5, 5],
+                             [4, 0, 1]]
+                            ], dtype='uint8')
+        equal_arrays = (random_cube.cube == after_B).all()
+        self.assertEqual(equal_arrays, True)
+
+    def test_rotate_B_prime(self):
+        random_cube = np.array([[[1, 3, 1],
+                                 [4, 0, 0],
+                                 [1, 3, 3]],
+                                [[0, 0, 5],
+                                 [1, 1, 1],
+                                 [3, 2, 5]],
+                                [[2, 1, 4],
+                                 [2, 2, 5],
+                                 [0, 3, 1]],
+                                [[4, 2, 2],
+                                 [0, 3, 1],
+                                 [1, 3, 1]],
+                                [[0, 5, 1],
+                                 [4, 4, 4],
+                                 [4, 5, 5]],
+                                [[4, 0, 2],
+                                 [4, 5, 5],
+                                 [5, 2, 2]]
+                                ], dtype='uint8')
+        random_cube = Cube(random_cube)
+        random_cube.rotate("B'")
+        after_B_prime = np.array([[[1, 3, 1],
+                                   [4, 0, 0],
+                                   [1, 3, 3]],
+                                  [[0, 0, 0],
+                                   [1, 1, 5],
+                                   [3, 2, 1]],
+                                  [[4, 5, 1],
+                                   [1, 2, 3],
+                                   [2, 2, 0]],
+                                  [[5, 2, 2],
+                                   [2, 3, 1],
+                                   [2, 3, 1]],
+                                  [[4, 0, 1],
+                                   [4, 4, 4],
+                                   [4, 5, 5]],
+                                  [[4, 0, 2],
+                                   [4, 5, 5],
+                                   [5, 1, 5]]
+                            ], dtype='uint8')
+        equal_arrays = (random_cube.cube == after_B_prime).all()
         self.assertEqual(equal_arrays, True)
 
 if __name__ == '__main__':
