@@ -47,10 +47,10 @@ class Rotations:
         cube[3, -1, :] = temp
         # rotating the bottom side
         temp = cube[5, 0, :].copy()
-        cube[5, 0, :] = np.flip(cube[5, :, 0])
-        cube[5, :, 0] = cube[5, cube.shape[1] - 1, :]
-        cube[5, cube.shape[1] - 1, :] = np.flip(cube[5, :, cube.shape[1] - 1])
-        cube[5, :, cube.shape[1] - 1] = temp
+        cube[5, 0, :] = np.flip(cube[5, :, 2])
+        cube[5, :, 2] = cube[5, 2, :]
+        cube[5, 2, :] = np.flip(cube[5, :, 0])
+        cube[5, :, 0] = temp
 
     @staticmethod
     def L(cube):
