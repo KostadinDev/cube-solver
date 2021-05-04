@@ -78,14 +78,6 @@ class Cube:
         elif move == "R":
             for i in range(3):
                 Rotations.R(self.cube)
-        elif move == "B'":
-            Rotations.B(self.cube)
-        elif move == "B2":
-            for i in range(2):
-                Rotations.B(self.cube)
-        elif move == "B":
-            for i in range(3):
-                Rotations.B(self.cube)
 
     # checks if solved
     def is_solved(self):
@@ -93,8 +85,3 @@ class Cube:
             if self.cube[i, :, :].sum() != i * self.cube.shape[1] * self.cube.shape[2]:
                 return False
         return True
-
-
-cube = Cube.solved_cube()
-cube.rotate('L')
-print(cube)

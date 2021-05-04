@@ -71,14 +71,4 @@ class Rotations:
     @staticmethod
     def B(cube):
         # !!! This is B' !!!
-        sides = [1, 4, 3, 5]
-        temp = cube[1, :, 2].copy()
-        for i in range(len(sides) - 1):
-            cube[sides[i], :, 2] = cube[sides[i + 1], :, 2]
-        cube[5, :, 2] = temp.copy()
-
-        temp = cube[2, :, 2].copy()
-        cube[2, :, 0] = cube[2, cube.shape[1] - 1, :]
-        cube[2, cube.shape[1] - 1, :] = np.flip(cube[2, :, 2])
-        cube[2, :, 2] = cube[2, 0, :]
-        cube[2, 0, :] = np.flip(temp)
+        pass
