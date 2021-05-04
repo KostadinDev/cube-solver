@@ -25,8 +25,10 @@ class Rotations:
         # !!! This is R' !!!
         sides = [0, 4, 2, 5]
         temp = cube[0, :, 2].copy()
-        for i in range(len(sides) - 1):
-            cube[sides[i], :, 2] = cube[sides[i + 1], :, 2]
+
+        cube[0, :, 2] = cube[4, :, 2]
+        cube[4, :, 2] = cube[2, :, 0]
+        cube[2, :, 0] = cube[5, :, 2]
         cube[5, :, 2] = temp.copy()
 
         temp = cube[1, :, 2].copy()
@@ -54,8 +56,10 @@ class Rotations:
     def L(cube):
         sides = [0, 4, 2, 5]
         temp = cube[0, :, 0].copy()
-        for i in range(len(sides) - 1):
-            cube[sides[i], :, 0] = cube[sides[i + 1], :, 0]
+
+        cube[0, :, 0] = cube[4, :, 0]
+        cube[4, :, 0] = cube[2, :, 2]
+        cube[2, :, 2] = cube[5, :, 0]
         cube[5, :, 0] = temp.copy()
 
         temp = cube[3, :, 0].copy()
@@ -66,4 +70,15 @@ class Rotations:
 
     @staticmethod
     def B(cube):
-        pass
+        # !!! This is B' !!!
+        sides = [1, 4, 3, 5]
+        temp = cube[1, :, 2].copy()
+        for i in range(len(sides) - 1):
+            cube[sides[i], :, 2] = cube[sides[i + 1], :, 2]
+        cube[5, :, 2] = temp.copy()
+
+        temp = cube[2, :, 2].copy()
+        cube[2, :, 0] = cube[2, cube.shape[1] - 1, :]
+        cube[2, cube.shape[1] - 1, :] = np.flip(cube[2, :, 2])
+        cube[2, :, 2] = cube[2, 0, :]
+        cube[2, 0, :] = np.flip(temp)
