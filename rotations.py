@@ -18,17 +18,7 @@ class Rotations:
 
     @staticmethod
     def F(cube):
-        temp = cube[1,:,0].copy()
-        cube[1,:,0] = cube[4,2,:]
-        cube[4,2,:] = cube[3,:,2]
-        cube[3,:,2] = cube[5,0,:]
-        cube[5,0,:] = temp
-
-        temp = cube[0, 0, :].copy()
-        cube[0, 0, :] = np.flip(cube[0, :, 0])
-        cube[0, :, 0] = cube[0, cube.shape[1] - 1, :]
-        cube[0, cube.shape[1] - 1, :] = np.flip(cube[0, :, cube.shape[1] - 1])
-        cube[0, :, cube.shape[1] - 1] = temp
+        pass
 
     @staticmethod
     def R(cube):
@@ -57,10 +47,10 @@ class Rotations:
         cube[3, -1, :] = temp
         # rotating the bottom side
         temp = cube[5, 0, :].copy()
-        cube[5, 0, :] = np.flip(cube[5, :, 2])
-        cube[5, :, 2] = cube[5, 2, :]
-        cube[5, 2, :] = np.flip(cube[5, :, 0])
-        cube[5, :, 0] = temp
+        cube[5, 0, :] = np.flip(cube[5, :, 0])
+        cube[5, :, 0] = cube[5, cube.shape[1] - 1, :]
+        cube[5, cube.shape[1] - 1, :] = np.flip(cube[5, :, cube.shape[1] - 1])
+        cube[5, :, cube.shape[1] - 1] = temp
 
     @staticmethod
     def L(cube):
@@ -80,14 +70,4 @@ class Rotations:
 
     @staticmethod
     def B(cube):
-        temp = cube[1,:,2].copy()
-        cube[1,:,2] = cube[5,2,:]
-        cube[5,2,:] = cube[3,:,0]
-        cube[3,:,0] = cube[4,0,:]
-        cube[4,0,:] = temp
-
-        temp = cube[2, 0, :].copy()
-        cube[2, 0, :] = np.flip(cube[2, :, 0])
-        cube[2, :, 0] = cube[2, cube.shape[1] - 1, :]
-        cube[2, cube.shape[1] - 1, :] = np.flip(cube[2, :, cube.shape[1] - 1])
-        cube[2, :, cube.shape[1] - 1] = temp
+        pass
