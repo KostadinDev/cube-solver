@@ -29,7 +29,7 @@ class Cube:
     # returns a randomly shuffled cube
     @staticmethod
     def random_cube():
-        shuffle_sequence = scrambler333.get_WCA_scramble().split(' ')
+        shuffle_sequence = scrambler222.get_WCA_scramble().split(' ')
         solved_cube = Cube.solved_cube()
         for move in shuffle_sequence:
             solved_cube.rotate(move)

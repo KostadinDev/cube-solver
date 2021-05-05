@@ -33,7 +33,6 @@ class Rotations:
     @staticmethod
     def R(cube):
         # !!! This is R' !!!
-        sides = [0, 4, 2, 5]
         temp = cube[0, :, 2].copy()
 
         cube[0, :, 2] = cube[4, :, 2]
