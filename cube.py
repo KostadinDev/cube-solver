@@ -29,7 +29,7 @@ class Cube:
     # returns a randomly shuffled cube
     @staticmethod
     def random_cube():
-        shuffle_sequence = scrambler333.get_WCA_scramble().split(' ')
+        shuffle_sequence = scrambler222.get_WCA_scramble().split(' ')
         solved_cube = Cube.solved_cube()
         for move in shuffle_sequence:
             solved_cube.rotate(move)
@@ -38,9 +38,9 @@ class Cube:
     # returns a solved cube
     @staticmethod
     def solved_cube():
-        configuration = np.zeros((6, 3, 3), dtype='uint8')
+        configuration = np.zeros((6, 2, 2), dtype='uint8')
         for side in range(6):
-            configuration[side] = np.ones((3, 3), dtype='uint8') * side
+            configuration[side] = np.ones((2, 2), dtype='uint8') * side
         return Cube(configuration)
 
     # rotates a side of the cube according to standard notation
