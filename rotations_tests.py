@@ -395,5 +395,6 @@ class TestStringMethods(unittest.TestCase):
     #     equal_arrays = (random_cube.cube == after_B_prime).all()
     #     self.assertEqual(equal_arrays, True)
 
+
 if __name__ == '__main__':
     unittest.main()
