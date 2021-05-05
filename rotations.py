@@ -18,11 +18,11 @@ class Rotations:
 
     @staticmethod
     def F(cube):
-        temp = cube[1,:,0].copy()
-        cube[1,:,0] = cube[4,2,:]
-        cube[4,2,:] = cube[3,:,2]
-        cube[3,:,2] = cube[5,0,:]
-        cube[5,0,:] = temp
+        temp = cube[1, :, 0].copy()
+        cube[1, :, 0] = cube[4, 1, :]
+        cube[4, 1, :] = cube[3, :, 1]
+        cube[3, :, 1] = cube[5, 0, :]
+        cube[5, 0, :] = temp
 
         temp = cube[0, 0, :].copy()
         cube[0, 0, :] = np.flip(cube[0, :, 0])
@@ -34,16 +34,15 @@ class Rotations:
     def R(cube):
         # !!! This is R' !!!
         temp = cube[0, :, 2].copy()
-
-        cube[0, :, 2] = cube[4, :, 2]
-        cube[4, :, 2] = cube[2, :, 0]
-        cube[2, :, 0] = cube[5, :, 2]
-        cube[5, :, 2] = temp.copy()
+        cube[0, :, 1] = cube[4, :, 1]
+        cube[4, :, 1] = cube[2, :, 0]
+        cube[2, :, 0] = cube[5, :, 1]
+        cube[5, :, 1] = temp.copy()
 
         temp = cube[1, 0, :].copy()
-        cube[1, 0, :] = cube[1, :, 2]
-        cube[1, :, 2] = np.flip(cube[1, 2, :])
-        cube[1, 2, :] = cube[1, :, 0]
+        cube[1, 0, :] = cube[1, :, 1]
+        cube[1, :, 1] = np.flip(cube[1, 1, :])
+        cube[1, 1, :] = cube[1, :, 0]
         cube[1, :, 0] = np.flip(temp)
 
     @staticmethod
@@ -63,27 +62,26 @@ class Rotations:
 
     @staticmethod
     def L(cube):
-        sides = [0, 4, 2, 5]
         temp = cube[0, :, 0].copy()
 
         cube[0, :, 0] = cube[4, :, 0]
-        cube[4, :, 0] = cube[2, :, 2]
-        cube[2, :, 2] = cube[5, :, 0]
+        cube[4, :, 0] = cube[2, :, 1]
+        cube[2, :, 1] = cube[5, :, 0]
         cube[5, :, 0] = temp.copy()
 
         temp = cube[3, :, 0].copy()
         cube[3, :, 0] = cube[3, cube.shape[1] - 1, :]
-        cube[3, cube.shape[1] - 1, :] = np.flip(cube[3, :, 2])
-        cube[3, :, 2] = cube[3, 0, :]
+        cube[3, cube.shape[1] - 1, :] = np.flip(cube[3, :, 1])
+        cube[3, :, 1] = cube[3, 0, :]
         cube[3, 0, :] = np.flip(temp)
 
     @staticmethod
     def B(cube):
-        temp = cube[1,:,2].copy()
-        cube[1,:,2] = cube[5,2,:]
-        cube[5,2,:] = cube[3,:,0]
-        cube[3,:,0] = cube[4,0,:]
-        cube[4,0,:] = temp
+        temp = cube[1, :, 1].copy()
+        cube[1, :, 1] = cube[5, 1, :]
+        cube[5, 1, :] = cube[3, :, 0]
+        cube[3, :, 0] = cube[4, 0, :]
+        cube[4, 0, :] = temp
 
         temp = cube[2, 0, :].copy()
         cube[2, 0, :] = np.flip(cube[2, :, 0])
