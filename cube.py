@@ -31,11 +31,8 @@ class Cube:
     def random_cube():
         shuffle_sequence = scrambler222.get_WCA_scramble().split(' ')
         solved_cube = Cube.solved_cube()
-        print(solved_cube)
         for move in shuffle_sequence:
-            print(move)
             solved_cube.rotate(move)
-            print(solved_cube.cube.sum())
         return solved_cube
 
     # returns a solved cube
