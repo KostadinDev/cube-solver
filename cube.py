@@ -1,7 +1,7 @@
 import numpy as np
 from pyTwistyScrambler import scrambler333, scrambler222, scrambler444, \
     megaminxScrambler, squareOneScrambler, ftoScrambler, rexScrambler
-
+import random
 from rotations import Rotations
 
 
@@ -22,6 +22,7 @@ class Cube:
         self.cube = cube if cube is not None else Cube.solved_cube()
         # documents the moves made to reach this state
         self.movelist = movelist
+        self.shape = self.cube.shape
 
     def __str__(self):
         return str(self.cube)
@@ -42,6 +43,18 @@ class Cube:
         for side in range(6):
             configuration[side] = np.ones((2, 2), dtype='uint8') * side
         return Cube(configuration)
+
+    # returns the possible actions of a cube
+    def actions(self):
+        return ['F', 'R', 'D', 'U', 'L', 'B',
+                'F\'', 'R\'', 'D\'', 'U\'', 'L\'', 'B\'',
+                'F2', 'R2', 'D2', 'U2', 'L2', 'B2']
+
+    def random_action(self):
+        return random.choice(self.actions())
+
+    def random_rotate(self):
+        self.rotate(self.random_action())
 
     # rotates a side of the cube according to standard notation
     def rotate(self, move):
