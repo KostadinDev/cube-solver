@@ -6,7 +6,7 @@ class Rotations:
     def U(cube):
         # rotating the top row
         temp = cube[0, 0, :].copy()
-        for i in range(cube.shape[1]):
+        for i in range(3):
             cube[i, 0, :] = cube[i + 1, 0, :]
         cube[3, 0, :] = temp
         # rotating the upper side
@@ -33,7 +33,7 @@ class Rotations:
     @staticmethod
     def R(cube):
         # !!! This is R' !!!
-        temp = cube[0, :, 2].copy()
+        temp = cube[0, :, 1].copy()
         cube[0, :, 1] = cube[4, :, 1]
         cube[4, :, 1] = cube[2, :, 0]
         cube[2, :, 0] = cube[5, :, 1]
@@ -50,7 +50,7 @@ class Rotations:
         # !!! This is actually D' !!!
         # rotating the bottom row
         temp = cube[0, -1, :].copy()
-        for i in range(cube.shape[1]):
+        for i in range(3):
             cube[i, -1, :] = cube[i + 1, -1, :]
         cube[3, -1, :] = temp
         # rotating the bottom side
