@@ -30,65 +30,65 @@ class TestStringMethods(unittest.TestCase):
         equal_arrays = (solved_cube.cube == correct_cube).all()
         self.assertEqual(equal_arrays, True)
 
-    def test_rotate_U(self):
-        random_cube = np.array([[[4,2],
-                                 [2,1]],
-                                [[4,2],
-                                 [2,3]],
-                                [[4,2],
-                                 [5,2]],
-                                [[2,2],
-                                 [3,1]],
-                                [[4,2],
-                                 [2,2]],
-                                [[4,2],
-                                 [5,2]]], dtype='uint8')
-        random_cube = Cube(random_cube)
-        random_cube.rotate('U')
-        after_U = np.array(    [[[4,2],
-                                 [2,1]],
-                                [[4,2],
-                                 [2,3]],
-                                [[2,2],
-                                 [5,2]],
-                                [[4,2],
-                                 [3,1]],
-                                [[2,4],
-                                 [2,2]],
-                                [[4,2],
-                                 [5,2]]], dtype='uint8')
-        equal_arrays = (random_cube.cube == after_U).all()
-        self.assertEqual(equal_arrays, True)
-
-    def test_rotate_U_prime(self):
-        random_cube = np.array([[[4,2],
-                                 [2,1]],
-                                [[4,2],
-                                 [2,3]],
-                                [[4,2],
-                                 [5,2]],
-                                [[2,2],
-                                 [3,1]],
-                                [[4,2],
-                                 [2,2]],
-                                [[4,2],
-                                 [5,2]]], dtype='uint8')
-        random_cube = Cube(random_cube)
-        random_cube.rotate("U'")
-        after_U_prime = np.array([[[2,2],
-                                   [2,1]],
-                                  [[4,2],
-                                   [2,3]],
-                                  [[4,2],
-                                   [5,2]],
-                                  [[4,2],
-                                   [3,1]],
-                                  [[2,2],
-                                   [4,2]],
-                                  [[4,2],
-                                   [5,2]]], dtype='uint8')
-        equal_arrays = (random_cube.cube == after_U_prime).all()
-        self.assertEqual(equal_arrays, True)
+    # def test_rotate_U(self):
+    #     random_cube = np.array([[[4,2],
+    #                              [2,1]],
+    #                             [[4,2],
+    #                              [2,3]],
+    #                             [[4,2],
+    #                              [5,2]],
+    #                             [[2,2],
+    #                              [3,1]],
+    #                             [[4,2],
+    #                              [2,2]],
+    #                             [[4,2],
+    #                              [5,2]]], dtype='uint8')
+    #     random_cube = Cube(random_cube)
+    #     random_cube.rotate('U')
+    #     after_U = np.array(    [[[4,2],
+    #                              [2,1]],
+    #                             [[4,2],
+    #                              [2,3]],
+    #                             [[2,2],
+    #                              [5,2]],
+    #                             [[4,2],
+    #                              [3,1]],
+    #                             [[2,4],
+    #                              [2,2]],
+    #                             [[4,2],
+    #                              [5,2]]], dtype='uint8')
+    #     equal_arrays = (random_cube.cube == after_U).all()
+    #     self.assertEqual(equal_arrays, True)
+    #
+    # def test_rotate_U_prime(self):
+    #     random_cube = np.array([[[4,2],
+    #                              [2,1]],
+    #                             [[4,2],
+    #                              [2,3]],
+    #                             [[4,2],
+    #                              [5,2]],
+    #                             [[2,2],
+    #                              [3,1]],
+    #                             [[4,2],
+    #                              [2,2]],
+    #                             [[4,2],
+    #                              [5,2]]], dtype='uint8')
+    #     random_cube = Cube(random_cube)
+    #     random_cube.rotate("U'")
+    #     after_U_prime = np.array([[[2,2],
+    #                                [2,1]],
+    #                               [[4,2],
+    #                                [2,3]],
+    #                               [[4,2],
+    #                                [5,2]],
+    #                               [[4,2],
+    #                                [3,1]],
+    #                               [[2,2],
+    #                                [4,2]],
+    #                               [[4,2],
+    #                                [5,2]]], dtype='uint8')
+    #     equal_arrays = (random_cube.cube == after_U_prime).all()
+    #     self.assertEqual(equal_arrays, True)
 
     # def test_rotate_R(self):
     #     random_cube = np.array([[[4,2],
