@@ -19,7 +19,7 @@ class Cube:
 
     def __init__(self, cube=None, movelist=[]):
         # 3d numpy array: cube[side][row][col]
-        self.cube = cube if cube is not None else Cube.solved_cube()
+        self.cube = cube.copy() if cube is not None else Cube.solved_cube()
         # documents the moves made to reach this state
         self.movelist = movelist
         self.shape = self.cube.shape
@@ -43,12 +43,6 @@ class Cube:
         for side in range(6):
             configuration[side] = np.ones((2, 2), dtype='uint8') * side
         return Cube(configuration)
-
-    # returns the possible actions of a cube
-    def actions(self):
-        return ['F', 'R', 'D', 'U', 'L', 'B',
-                'F\'', 'R\'', 'D\'', 'U\'', 'L\'', 'B\'',
-                'F2', 'R2', 'D2', 'U2', 'L2', 'B2']
 
     def random_action(self):
         return random.choice(self.actions())
@@ -108,9 +102,38 @@ class Cube:
             for i in range(3):
                 Rotations.B(self.cube)
 
+    # Finds the number of correctly positioned blocks
+    def num_correct(self):
+        total = 0
+        if self.cube[0][0][0] == 0 and self.cube[3][0][1] == 3 and self.cube[4][1][0] == 4:
+            total += 1
+        if self.cube[0][1][0] == 0 and self.cube[3][1][1] == 3 and self.cube[5][0][0] == 5:
+            total += 1
+        if self.cube[0][0][1] == 0 and self.cube[1][0][0] == 1 and self.cube[4][1][1] == 4:
+            total += 1
+        if self.cube[0][1][1] == 0 and self.cube[1][1][0] == 1 and self.cube[5][0][1] == 5:
+            total += 1
+        if self.cube[1][0][1] == 1 and self.cube[2][0][0] == 2 and self.cube[4][0][1] == 4:
+            total += 1
+        if self.cube[1][1][1] == 1 and self.cube[2][1][0] == 2 and self.cube[5][1][1] == 5:
+            total += 1
+
+        if self.cube[2][0][1] == 2 and self.cube[3][0][0] == 3 and self.cube[4][0][0] == 4:
+            total += 1
+        if self.cube[2][1][1] == 2 and self.cube[3][1][0] == 3 and self.cube[5][1][1] == 5:
+            total += 1
+
+        return total
+
     # checks if solved
     def is_solved(self):
         for i in range(self.cube.shape[0]):
             if self.cube[i, :, :].sum() != i * self.cube.shape[1] * self.cube.shape[2]:
                 return False
         return True
+
+    def reward(self):
+        if self.is_solved():
+            return 1
+        else:
+            return 0
