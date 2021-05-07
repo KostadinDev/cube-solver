@@ -134,7 +134,6 @@ class TestStringMethods(unittest.TestCase):
                                  [5, 2]]], dtype='uint8')
         random_cube = Cube(random_cube)
         random_cube.rotate("D")
-        print(random_cube)
         after_D = np.array([[[3, 3],
                                  [3, 0]],
                                 [[0, 2],
@@ -145,8 +144,8 @@ class TestStringMethods(unittest.TestCase):
                                  [3, 2]],
                                 [[5, 5],
                                  [1, 1]],
-                                [[5, 4],
-                                 [2, 4]]], dtype='uint8')
+                                [[4, 2],
+                                 [4, 5]]], dtype='uint8')
         equal_arrays = (random_cube.cube == after_D).all()
         self.assertEqual(equal_arrays, True)
 
@@ -212,6 +211,46 @@ class TestStringMethods(unittest.TestCase):
         equal_arrays = (random_cube.cube == after_B).all()
         self.assertEqual(equal_arrays, True)
 
+    def test_rotate_primes(self):
+        random_cube = np.array([[[3, 3],
+                                 [2, 4]],
+                                [[0, 2],
+                                 [4, 5]],
+                                [[1, 0],
+                                 [3, 2]],
+                                [[1, 0],
+                                 [3, 0]],
+                                [[5, 5],
+                                 [1, 1]],
+                                [[4, 4],
+                                 [5, 2]]], dtype='uint8')
+        random_cube2 = np.array([[[3, 3],
+                                 [2, 4]],
+                                [[0, 2],
+                                 [4, 5]],
+                                [[1, 0],
+                                 [3, 2]],
+                                [[1, 0],
+                                 [3, 0]],
+                                [[5, 5],
+                                 [1, 1]],
+                                [[4, 4],
+                                 [5, 2]]], dtype='uint8')
+        random_cube = Cube(random_cube)
+        random_cube.rotate("B")
+        random_cube.rotate("B'")
+        random_cube.rotate("F")
+        random_cube.rotate("F'")
+        random_cube.rotate("R")
+        random_cube.rotate("R'")
+        random_cube.rotate("L")
+        random_cube.rotate("L'")
+        random_cube.rotate("U")
+        random_cube.rotate("U'")
+        random_cube.rotate("D")
+        random_cube.rotate("D'")
+        equal_arrays = (random_cube.cube == random_cube2).all()
+        self.assertEqual(equal_arrays, True)
 
 if __name__ == '__main__':
     unittest.main()
