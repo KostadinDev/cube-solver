@@ -12,10 +12,11 @@ def graph_search(cube):
     frontier = []
     explored = []
     #Should push (heuristic value based on current state of cube, (cube state, path)) onto frontier
-    heapq.heappush(frontier, (get_heuristic_value(cube), (cube.cube, cube, [])))
+    heapq.heappush(frontier, (get_heuristic_value(cube), (cube.cube, cube)))
+    # print(frontier)
     while frontier:
         temp = heapq.heappop(frontier)
-        current_state, cube_obj, path = temp[1][0], temp[1][1], temp[1][2]
+        current_state, cube_obj = temp[1][0], temp[1][1]
         if cube_obj.is_solved():
             b = datetime.datetime.now()
             c = b - a
@@ -23,15 +24,17 @@ def graph_search(cube):
             return current_state, path
         if str(current_state) not in explored:
             explored.append(str(current_state))
-            for move in get_next_possible_moves(cube_obj, path):
-                print(frontier)
+            for move in get_next_possible_moves(cube_obj):
                 new_grid_state = move[0]
                 new_cube_obj = move[1]
-                new_path = move[2]
-                g_val = len(new_path)
+                g_val = len(new_cube_obj.movelist)
                 f_val = g_val + get_heuristic_value(new_cube_obj)
                 # print(f_val)
-                heapq.heappush(frontier, (f_val, (new_grid_state, new_path)))
+                print(f_val)
+                push = (f_val, (new_grid_state, new_cube_obj))
+                print("Push: ")
+                print(push)
+                heapq.heappush(frontier, push)
 
 #Advanced move pruning: Let three of the faces be "first" faces,
 # and three of them be "second" faces, where the second faces are
@@ -40,30 +43,27 @@ def graph_search(cube):
 # But, after you move a second face,
 # you can't move the same face again or the opposite first face.
 # In this case the branching factor is 12. The overall branching factor is then around 13.
-def get_next_possible_moves(cube_obj, path):
+def get_next_possible_moves(cube_obj):
     pick_a_move = ['R', 'F', 'T', 'L', 'B', 'D']
     last_move = ''
-    if path:
-        last_move = path[-1]
+    if cube_obj.movelist:
+        last_move = cube_obj.movelist[-1]
         #Remove last_move from pick_a_move_array
-        pick_a_move.remove(last_move)
+        if last_move in pick_a_move:
+            pick_a_move.remove(last_move)
     returned = []
     # L, B, and D are "second" faces
-    if last_move == 'L':
+    if 'L' in last_move:
         pick_a_move.remove('R')
-    elif last_move == 'B':
+    elif 'B' in last_move:
         pick_a_move.remove('F')
-    elif last_move == 'D':
+    elif 'D' in last_move:
         pick_a_move.remove('T')
 
     for move in pick_a_move:
         new_cube = copy.deepcopy(cube_obj)
         new_cube.rotate(move)
-        new_path = []
-        if path:
-            new_path = path.copy()
-        new_path.append(move)
-        returned.append((new_cube.cube, new_cube, new_path))
+        returned.append((new_cube.cube, new_cube))
     return returned
 
 
