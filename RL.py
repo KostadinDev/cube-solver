@@ -9,7 +9,18 @@ from torch.autograd import Variable
 from collections import deque
 from dataloader import DataLoader
 import pycuber as pc
+from constants import Constants
+from cube import Cube
 
+
+import numpy as np
+import tensorflow as tf
+from tensorflow import keras
+from copy  import deepcopy
+import datetime
+from model import buildModel, compile_model
+from cubeAgent import CubeAgent
+import os
 
 class Actor(nn.Module):
 
@@ -50,9 +61,23 @@ def ADI(iterations):
         print(values)
         print(policies)
 
-        for idx, cube in enumerate(cubes):
-            current_values = np.zeros(len(cube.actions()))
-            # encodings[idx] = np.array(cube.)
+        for idx, state in enumerate(cubes):
+            current_values = np.zeros(len(state.actions()))
+            encodings[idx] = state.cube.flatten()
+            actions = Constants.actions
+
+            next_state = Cube(state.cube)
+
+            for i, action in enumerate(actions):
+                next_state.rotate(action)
+                reward = state.reward()
+                next_encoding = next_state.cube.flatten()
+
+                value, policy = model(next_state)
+                current_values[i] = value + reward
+        values[idx] = np.array(current_values.max())
+        policies[i] = current_values.argmax()
+
 
 
 if __name__ == '__main__':
